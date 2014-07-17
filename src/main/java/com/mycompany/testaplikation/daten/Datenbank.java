@@ -19,8 +19,6 @@ import org.apache.log4j.Logger;
 public class Datenbank implements DatenInterface {
 
     private static final String JDBC_DRIVER = "org.apache.derby.jdbc.ClientDriver";
-    //private static final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-    //private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_URL = "jdbc:derby://localhost:1527/sample";
     private final static transient Logger log = Logger.getLogger(Datenbank.class);
     private static Statement stmt = null;
@@ -29,12 +27,11 @@ public class Datenbank implements DatenInterface {
     public String load() {
 
         try {
+
             Class.forName(JDBC_DRIVER).newInstance();
 
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-
             log.fatal("Driver failed", e);
-
         }
         Connection connection = null;
 

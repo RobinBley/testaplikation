@@ -42,9 +42,9 @@ public class App {
     public App() {
         //Properties auslesen
         MyProperties properties = new MyProperties();
-        setAusgabeInterface((AusgabeInterface)properties.getBean("ausgabe"));
-        setDateninterface((DatenInterface)properties.getBean("daten"));
-        setAendererInterface((AendererInterface)properties.getBean("aenderer"));
+        setAusgabeInterface((AusgabeInterface) properties.getBean("ausgabe"));
+        setDateninterface((DatenInterface) properties.getBean("daten"));
+        setAendererInterface((AendererInterface) properties.getBean("aenderer"));
         //Text ausgeben
         getAusgabeInterface().ausgabe(aenderer.textAendern(getDateninterface().load()));
 
