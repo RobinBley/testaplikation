@@ -1,17 +1,9 @@
 package com.mycompany.testaplikation;
 
-import com.mycompany.testaplikation.View.ViewConsole;
 import com.mycompany.testaplikation.ausgabe.AusgabeInterface;
-import com.mycompany.testaplikation.ausgabe.LogAusgabe;
-import com.mycompany.testaplikation.ausgabe.aenderer.Aenderer;
 import com.mycompany.testaplikation.ausgabe.aenderer.AendererInterface;
-import com.mycompany.testaplikation.daten.Daten;
 import com.mycompany.testaplikation.daten.DatenInterface;
 import com.mycompany.testaplikation.properties.MyProperties;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.util.Properties;
 
 /**
  *
