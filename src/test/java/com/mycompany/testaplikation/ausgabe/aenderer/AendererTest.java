@@ -13,7 +13,7 @@ public class AendererTest {
 
     @Test
     public void testTextAendern() {
-        assertEquals("Hallo", aenderer.textAendern("Hall"));
+        assertEquals("Hallo", aenderer.textAendern("Hallo"));
 
     }
 

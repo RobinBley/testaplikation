@@ -7,9 +7,9 @@ package com.mycompany.testaplikation.daten;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
 import org.apache.log4j.Logger;
 
 /**
@@ -20,6 +20,7 @@ public class Datenbank implements DatenInterface {
 
     //private static final String JDBC_DRIVER = "org.apache.derby.jdbc.ClientDriver";
     private static final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+    //private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_URL = "jdbc:derby://localhost:1527/sample";
     private final static transient Logger log = Logger.getLogger(Datenbank.class);
     private static Statement stmt = null;
@@ -44,6 +45,7 @@ public class Datenbank implements DatenInterface {
         } catch (SQLException e) {
             System.out.println("Connection failed");
             log.fatal("connection failed", e);
+            e.printStackTrace();
         }
         
         if (connection != null) {
@@ -51,7 +53,16 @@ public class Datenbank implements DatenInterface {
                 System.out.println("Verbunden");
                 
                 stmt = connection.createStatement();
-                stmt.executeQuery("select DESCRIPTION from APP.PRODUCT where PRODUCT_ID = 988765");
+                ResultSet result = stmt.executeQuery("select DESCRIPTION from APP.PRODUCT where PRODUCT_ID = 988765");
+                
+                if (result.next()){
+                    return result.getString(1);
+                }else{
+                    log.debug("no result");
+                }
+                
+                connection.close();
+                stmt.close();
             } catch (SQLException ex) {
                 log.fatal("kein Zugriff auf den Datensatz", ex);
             }
@@ -59,6 +70,7 @@ public class Datenbank implements DatenInterface {
         } else {
             System.out.println("Connection failed");
             log.fatal("connection failed");
+           
         }
         
         return "Hallo Welt";

@@ -1,5 +1,6 @@
 package com.mycompany.testaplikation;
 
+import com.mycompany.testaplikation.View.ViewConsole;
 import com.mycompany.testaplikation.ausgabe.AusgabeInterface;
 import com.mycompany.testaplikation.ausgabe.LogAusgabe;
 import com.mycompany.testaplikation.ausgabe.aenderer.Aenderer;
@@ -59,6 +60,5 @@ public class App {
 
     public static void main(String[] args) {
         new App();
-
     }
 }
