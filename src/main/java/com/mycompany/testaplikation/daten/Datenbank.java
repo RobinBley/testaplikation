@@ -7,6 +7,7 @@ package com.mycompany.testaplikation.daten;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -47,7 +48,18 @@ public class Datenbank implements DatenInterface {
             try {
 
                 stmt = connection.createStatement();
-                ResultSet result = stmt.executeQuery("select DESCRIPTION from APP.PRODUCT where PRODUCT_ID = 988765");
+
+                //PreparedStatement ps = connection.prepareStatement("SELECT DESCRIPTION FROM ? WHERE (?=?)");
+                //ResultSet result = stmt.executeQuery("select DESCRIPTION from APP.PRODUCT where PRODUCT_ID = 988765");
+                //ps.setString(1, "DESCRIPTION");
+                //ps.setString(2, "APP.PRODUCT");
+                //ps.setString(3, "PRODUCT_ID");
+                
+                PreparedStatement ps = connection.prepareStatement("SELECT DESCRIPTION from APP.PRODUCT where (PRODUCT_ID=?)");
+
+                ps.setString(1, "988765");
+
+                ResultSet result = ps.executeQuery();
 
                 if (result.next()) {
                     return result.getString(1);
@@ -66,7 +78,7 @@ public class Datenbank implements DatenInterface {
 
         }
 
-        return "Hallo Welt";
+        return null;
     }
 
 }
